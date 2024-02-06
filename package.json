@@ -1,5 +1,5 @@
 {
-  "name": "@inubekit/your-component-name",
+  "name": "@inubekit/textarea",
   "homepage": "https://inubeds.vercel.app/",
   "author": "inube",
   "main": "dist/index.es.js",
