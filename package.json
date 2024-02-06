@@ -40,7 +40,6 @@
     "@inubekit/label": "^1.0.0",
     "@inubekit/stack": "^1.1.0",
     "@inubekit/text": "^1.3.0",
-    "@types/styled-components": "^5.1.34",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
