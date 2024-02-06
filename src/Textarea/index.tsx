@@ -13,7 +13,7 @@ import {
   StyledMessageContainer,
 } from "./styles";
 
-interface ITextareaProps {
+export interface ITextareaProps {
   label?: string;
   name?: string;
   id: string;
