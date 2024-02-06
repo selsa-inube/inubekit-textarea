@@ -69,7 +69,7 @@ const Message = (props: Omit<ITextareaProps, "id">) => {
   const { disabled, status, message } = props;
 
   return status !== "pending" ? (
-    <StyledMessageContainer disabled={disabled} status={status}>
+    <StyledMessageContainer $disabled={disabled} $status={status}>
       <Icon
         appearance={status === "invalid" ? "error" : "success"}
         disabled={disabled}
@@ -91,7 +91,7 @@ const Message = (props: Omit<ITextareaProps, "id">) => {
   );
 };
 
-const Textarea = (props: ITextareaProps) => {
+export const Textarea = (props: ITextareaProps) => {
   const {
     label,
     name,
@@ -130,7 +130,7 @@ const Textarea = (props: ITextareaProps) => {
   };
 
   return (
-    <StyledContainer fullwidth={fullwidth} disabled={disabled}>
+    <StyledContainer $fullwidth={fullwidth} $disabled={disabled}>
       <Stack width="100%" margin="s0 s0 s050 s0">
         {(label || required) && (
           <Stack gap="4px" alignItems="center" padding="s0 s0 s0 s200">
@@ -178,11 +178,11 @@ const Textarea = (props: ITextareaProps) => {
         name={name}
         id={id}
         placeholder={placeholder}
-        disabled={disabled}
+        $disabled={disabled}
         required={required}
-        status={status}
-        fullwidth={fullwidth}
-        isFocused={isFocused}
+        $status={status}
+        $fullwidth={fullwidth}
+        $isFocused={isFocused}
         onChange={onChange}
         onFocus={interceptFocus}
         onBlur={interceptBlur}
@@ -196,6 +196,3 @@ const Textarea = (props: ITextareaProps) => {
     </StyledContainer>
   );
 };
-
-export type { ITextareaProps };
-export { Textarea };
