@@ -1,3 +1,23 @@
+# v0.0.2 (Tue Feb 06 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: export ITextareaProps interface (carlos3k11@gmail.com)
+- feat: remove unused dependencies and update Vite configuration (carlos3k11@gmail.com)
+- feat(Storybook): disable telemetry and update documentation settings (carlos3k11@gmail.com)
+- feat(Textarea): correcting errors in the last HTML template (carlos3k11@gmail.com)
+- feat: add Textarea component and dependencies (carlos3k11@gmail.com)
+- feat: implement the distribution of the type definition (carlos3k11@gmail.com)
+- feat: update component name in package.json (carlos3k11@gmail.com)
+- Initial commit ([@Andresbl123](https://github.com/Andresbl123))
+
+#### Authors: 2
+
+- Andres ([@Andresbl123](https://github.com/Andresbl123))
+- Andres Babativa (carlos3k11@gmail.com)
+
+---
+
 # v0.0.1 (Wed Jan 17 2024)
 
 #### ⚠️ Pushed to `main`
