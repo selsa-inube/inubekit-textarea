@@ -32,7 +32,7 @@
     "auto": "auto",
     "changelog": "npm run auto changelog",
     "version": "rm -rf dist && npm run build",
-    "postversion": "git push --follow-tags && npm run auto release"
+    "release": "git push --follow-tags && npm run auto release"
   },
   "dependencies": {
     "@inubekit/foundations": "^2.3.0",
