@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { inube } from "@inubekit/foundations";
+import { typography } from "./typography";
 
 export const StyledContainer = styled.div`
   cursor: ${({ $disabled }) => $disabled && "not-allowed"};
@@ -8,51 +9,53 @@ export const StyledContainer = styled.div`
 
 export const StyledTextarea = styled.textarea`
   border-radius: 8px;
-  padding: ${() => `${inube.spacing.s100} ${inube.spacing.s150} ${inube.spacing.s100}
-    ${inube.spacing.s200}`};
-  font-family: ${inube.typography.body.large.font};
-  font-size: ${inube.typography.body.large.size};
-  font-weight: ${inube.typography.body.large.weight};
-  line-height: ${inube.typography.body.large.lineHeight};
-  letter-spacing: ${inube.typography.body.large.tracking};
+  padding: 8px 12px 8px 16px;
+  font-family: ${typography.body.large.font};
+  font-size: ${typography.body.large.size};
+  font-weight: ${typography.body.large.weight};
+  line-height: ${typography.body.large.lineHeight};
+  letter-spacing: ${typography.body.large.tracking};
   width: ${({ $fullwidth }) => ($fullwidth ? "calc(100% - 32px)" : "452px")};
   height: 120px;
   color: ${({ disabled, theme }) =>
     disabled
-      ? theme?.color?.text?.gray?.disabled || inube.color.text.gray.disabled
-      : theme?.color?.text?.dark?.regular || inube.color.text.dark.regular};
+      ? theme?.text?.gray?.content?.color?.disabled ||
+        inube.text.gray.content.color.disabled
+      : theme?.text?.dark?.content?.color?.regular ||
+        inube.text.dark.content.color.regular};
   border: 2px solid
     ${({ $disabled, $status, $isFocused, theme }) => {
       if ($disabled) {
         return (
-          theme?.color?.stroke?.gray?.disabled ||
-          inube.color.stroke.gray.disabled
+          theme?.text?.gray?.content?.color?.disabled ||
+          inube.text.gray.content.color.disabled
         );
       }
 
       if ($status === "invalid") {
         return (
-          theme?.color?.stroke?.error?.regular ||
-          inube.color.stroke.error.regular
+          theme?.text?.danger?.content?.color?.regular ||
+          inube.text.danger.content.color.regular
         );
       }
 
       if ($isFocused) {
         return (
-          theme?.color?.stroke?.primary?.hover ||
-          inube.color.stroke.primary.hover
+          theme?.text?.primary?.content?.color?.hover ||
+          inube.text.primary.content.color.hover
         );
       }
       return (
-        theme?.color?.stroke?.divider?.regular ||
-        inube.color.stroke.divider.regular
+        theme?.text?.gray?.content?.color?.regular ||
+        inube.text.gray.content.color.regular
       );
     }};
   ${({ $disabled }) => $disabled && "pointer-events: none; opacity: 0.5;"}
 
   ::placeholder {
     color: ${({ theme }) =>
-      theme?.color?.text?.gray?.regular || inube.color.text.gray.regular};
+      theme?.text?.dark?.content?.color?.regular ||
+      inube.text.dark.content.color.regular};
   }
 
   &:focus {
@@ -68,24 +71,27 @@ export const StyledTextarea = styled.textarea`
 export const StyledMessageContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-left: ${inube.spacing.s200};
+  margin-left: 16px;
   pointer-events: none;
   color: ${({ $disabled, $status, theme }) => {
     if ($disabled) {
       return (
-        theme?.color?.text?.gray?.disabled || inube.color.text.gray.disabled
+        theme?.text?.dark?.content?.color?.disabled ||
+        inube.text.dark.content.color.disabled
       );
     }
 
     if ($status === "valid") {
       return (
-        theme?.color?.text?.success?.regular || inube.color.text.success.regular
+        theme?.text?.success?.content?.color?.regular ||
+        inube.text.success.content.color.regular
       );
     }
 
     if ($status === "invalid") {
       return (
-        theme?.color?.text?.error?.regular || inube.color.text.error.regular
+        theme?.text?.danger?.content?.color?.regular ||
+        inube.text.danger.content.color.regular
       );
     }
   }};
@@ -93,6 +99,6 @@ export const StyledMessageContainer = styled.div`
   & svg {
     width: 14px;
     height: 14px;
-    margin-top: ${inube.spacing.s100};
+    margin-top: 8px;
   }
 `;

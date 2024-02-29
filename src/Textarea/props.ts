@@ -1,6 +1,6 @@
 const status = ["valid", "invalid", "pending"] as const;
 
-export type Appearence = "error" | "warning" | "gray";
+export type Appearence = "danger" | "warning" | "gray";
 
 export type Status = (typeof status)[number];
 

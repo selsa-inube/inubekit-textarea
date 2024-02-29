@@ -1,6 +1,3 @@
-import { ThemeProvider } from "styled-components";
-
-import { presente } from "@inubekit/foundations";
 import { props, parameters } from "../props";
 import { ITextareaProps, Textarea } from "..";
 import { TextareaController } from "./TextareaController";
@@ -28,19 +25,5 @@ Default.args = {
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil veniam, reiciendis ipsum itaque unde odio voluptatum ab cumque deleniti dolore magnam quas hic rem, mollitia adipisci. Officiis accusamus aut consectetur",
 };
 
-const theme = {
-  ...presente,
-};
-
-const Themed = (args: ITextareaProps) => (
-  <ThemeProvider theme={theme}>
-    <TextareaController {...args} />
-  </ThemeProvider>
-);
-
-Themed.args = {
-  ...Default.args,
-};
-
 export default story;
-export { Default, Themed };
+export { Default };

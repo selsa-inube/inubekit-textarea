@@ -41,7 +41,7 @@ const defineAppearance = (
   if (maxLength - valueLength <= lengthThreshold && valueLength <= maxLength) {
     return "warning";
   } else if (valueLength > maxLength) {
-    return "error";
+    return "danger";
   }
   return "gray";
 };
@@ -71,7 +71,7 @@ const Message = (props: Omit<ITextareaProps, "id">) => {
   return status !== "pending" ? (
     <StyledMessageContainer $disabled={disabled} $status={status}>
       <Icon
-        appearance={status === "invalid" ? "error" : "success"}
+        appearance={status === "invalid" ? "danger" : "success"}
         disabled={disabled}
         icon={status === "invalid" ? <MdOutlineError /> : <MdCheckCircle />}
       />
@@ -80,7 +80,7 @@ const Message = (props: Omit<ITextareaProps, "id">) => {
         size="small"
         textAlign="start"
         margin="8px 0px 0px 4px"
-        appearance={status === "invalid" ? "error" : "success"}
+        appearance={status === "invalid" ? "danger" : "success"}
         disabled={disabled}
       >
         {message && `${message}`}
