@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { inube } from "@inubekit/foundations";
-import { typography } from "./typography";
 
 export const StyledContainer = styled.div`
   cursor: ${({ $disabled }) => $disabled && "not-allowed"};
@@ -10,11 +9,12 @@ export const StyledContainer = styled.div`
 export const StyledTextarea = styled.textarea`
   border-radius: 8px;
   padding: 8px 12px 8px 16px;
-  font-family: ${typography.body.large.font};
-  font-size: ${typography.body.large.size};
-  font-weight: ${typography.body.large.weight};
-  line-height: ${typography.body.large.lineHeight};
-  letter-spacing: ${typography.body.large.tracking};
+  font-family: ${({ theme }) =>
+    theme?.typography?.body?.large?.font || inube.typography.body.large.font};
+  font-size: ${inube.typography.body.large.size};
+  font-weight: ${inube.typography.body.large.weight};
+  line-height: ${inube.typography.body.large.lineHeight};
+  letter-spacing: ${inube.typography.body.large.tracking};
   width: ${({ $fullwidth }) => ($fullwidth ? "calc(100% - 32px)" : "452px")};
   height: 120px;
   color: ${({ disabled, theme }) =>
