@@ -35,7 +35,7 @@
     "release": "git push --follow-tags && npm run auto release"
   },
   "dependencies": {
-    "@inubekit/foundations": "^2.4.0",
+    "@inubekit/foundations": "^2.5.0",
     "@inubekit/icon": "^1.2.0",
     "@inubekit/label": "^2.1.0",
     "@inubekit/stack": "^1.1.0",
