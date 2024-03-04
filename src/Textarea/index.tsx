@@ -13,7 +13,7 @@ import {
   StyledMessageContainer,
 } from "./styles";
 
-export interface ITextarea {
+interface ITextarea {
   label?: string;
   name?: string;
   id: string;
@@ -64,7 +64,7 @@ const Counter = (
   );
 };
 
-export const Textarea = (props: ITextarea) => {
+const Textarea = (props: ITextarea) => {
   const {
     label,
     name,
@@ -181,3 +181,6 @@ export const Textarea = (props: ITextarea) => {
     </StyledContainer>
   );
 };
+
+export { Textarea };
+export type { ITextarea };

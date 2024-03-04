@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { inube } from "@inubekit/foundations";
 
-export const StyledContainer = styled.div`
+const StyledContainer = styled.div`
   cursor: ${({ $disabled }) => $disabled && "not-allowed"};
   width: ${({ $fullwidth }) => ($fullwidth ? "100%" : "fit-content")};
 `;
 
-export const StyledTextarea = styled.textarea`
+const StyledTextarea = styled.textarea`
   border-radius: 8px;
   padding: 8px 12px 8px 16px;
   font-family: ${({ theme }) =>
@@ -66,7 +66,7 @@ export const StyledTextarea = styled.textarea`
   }
 `;
 
-export const StyledMessageContainer = styled.div`
+const StyledMessageContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 16px;
@@ -81,3 +81,5 @@ export const StyledMessageContainer = styled.div`
     margin-top: 8px;
   }
 `;
+
+export { StyledContainer, StyledTextarea, StyledMessageContainer };
