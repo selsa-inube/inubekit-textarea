@@ -19,7 +19,7 @@ export interface ITextarea {
   id: string;
   placeholder?: string;
   disabled?: boolean;
-  isFocused?: boolean;
+  focused?: boolean;
   status?: Status;
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -83,17 +83,17 @@ export const Textarea = (props: ITextarea) => {
     lengthThreshold = 0,
   } = props;
 
-  const [isFocused, setIsFocused] = useState(false);
+  const [focused, setFocused] = useState(false);
 
   const interceptFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsFocused(true);
+    setFocused(true);
     if (typeof onFocus === "function") {
       onFocus(e);
     }
   };
 
   const interceptBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsFocused(false);
+    setFocused(false);
     if (typeof onBlur === "function") {
       onBlur(e);
     }
@@ -108,7 +108,7 @@ export const Textarea = (props: ITextarea) => {
               <Label
                 htmlFor={id}
                 disabled={disabled}
-                focused={isFocused}
+                focused={focused}
                 invalid={status === "invalid" ? true : false}
               >
                 {label}
@@ -152,7 +152,7 @@ export const Textarea = (props: ITextarea) => {
         required={required}
         $status={status}
         $fullwidth={fullwidth}
-        $isFocused={isFocused}
+        $focused={focused}
         onChange={onChange}
         onFocus={interceptFocus}
         onBlur={interceptBlur}

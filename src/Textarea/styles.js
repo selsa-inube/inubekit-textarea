@@ -19,43 +19,41 @@ export const StyledTextarea = styled.textarea`
   height: 120px;
   color: ${({ disabled, theme }) =>
     disabled
-      ? theme?.text?.gray?.content?.color?.disabled ||
-        inube.text.gray.content.color.disabled
-      : theme?.text?.dark?.content?.color?.regular ||
-        inube.text.dark.content.color.regular};
+      ? theme?.input?.content?.color?.disabled ||
+        inube.input.content.color.disabled
+      : theme?.input?.content?.color?.regular ||
+        inube.input.content.color.regular};
   border: 1px solid
-    ${({ $disabled, $status, $isFocused, theme }) => {
+    ${({ $disabled, $status, $focused, theme }) => {
       if ($disabled) {
         return (
-          theme?.text?.gray?.content?.color?.disabled ||
-          inube.text.gray.content.color.disabled
+          theme?.input?.border?.color?.disabled ||
+          inube.input.border.color.disabled
         );
       }
 
       if ($status === "invalid") {
         return (
-          theme?.text?.danger?.content?.color?.regular ||
-          inube.text.danger.content.color.regular
+          theme?.input?.border?.color?.invalid ||
+          inube.input.border.color.invalid
         );
       }
 
-      if ($isFocused) {
+      if ($focused) {
         return (
-          theme?.text?.primary?.content?.color?.hover ||
-          inube.text.primary.content.color.hover
+          theme?.input?.border?.color?.focus || inube.input.border.color.focus
         );
       }
       return (
-        theme?.text?.gray?.content?.color?.regular ||
-        inube.text.gray.content.color.regular
+        theme?.input?.border?.color?.regular || inube.input.border.color.regular
       );
     }};
   ${({ $disabled }) => $disabled && "pointer-events: none; opacity: 0.5;"}
 
   ::placeholder {
     color: ${({ theme }) =>
-      theme?.text?.dark?.content?.color?.regular ||
-      inube.text.dark.content.color.regular};
+      theme?.input?.placeholder?.color?.regular ||
+      inube.input.placeholder.color.regular};
   }
 
   &:focus {
@@ -73,19 +71,9 @@ export const StyledMessageContainer = styled.div`
   align-items: center;
   margin-left: 16px;
   pointer-events: none;
-  color: ${({ $disabled, theme }) => {
-    if ($disabled) {
-      return (
-        theme?.text?.dark?.content?.color?.disabled ||
-        inube.text.dark.content.color.disabled
-      );
-    }
-
-    return (
-      theme?.text?.danger?.content?.color?.regular ||
-      inube.text.danger.content.color.regular
-    );
-  }};
+  color: ${({ theme }) =>
+    theme?.input?.message?.color?.invalid ||
+    inube.input.message.color.invalid}};
 
   & svg {
     width: 14px;
