@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MdOutlineError, MdCheckCircle } from "react-icons/md";
+import { MdOutlineError } from "react-icons/md";
 
 import { Icon } from "@inubekit/icon";
 import { Label } from "@inubekit/label";
@@ -13,7 +13,7 @@ import {
   StyledMessageContainer,
 } from "./styles";
 
-export interface ITextareaProps {
+export interface ITextarea {
   label?: string;
   name?: string;
   id: string;
@@ -29,7 +29,6 @@ export interface ITextareaProps {
   fullwidth?: boolean;
   onFocus?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  readOnly?: boolean;
   lengthThreshold?: number;
 }
 
@@ -47,7 +46,7 @@ const defineAppearance = (
 };
 
 const Counter = (
-  props: Omit<ITextareaProps, "id"> & {
+  props: Omit<ITextarea, "id"> & {
     valueLength: number;
     appearance: Appearence;
   },
@@ -65,33 +64,7 @@ const Counter = (
   );
 };
 
-const Message = (props: Omit<ITextareaProps, "id">) => {
-  const { disabled, status, message } = props;
-
-  return status !== "pending" ? (
-    <StyledMessageContainer $disabled={disabled} $status={status}>
-      <Icon
-        appearance={status === "invalid" ? "danger" : "success"}
-        disabled={disabled}
-        icon={status === "invalid" ? <MdOutlineError /> : <MdCheckCircle />}
-      />
-      <Text
-        type="body"
-        size="small"
-        textAlign="start"
-        margin="8px 0px 0px 4px"
-        appearance={status === "invalid" ? "danger" : "success"}
-        disabled={disabled}
-      >
-        {message && `${message}`}
-      </Text>
-    </StyledMessageContainer>
-  ) : (
-    <></>
-  );
-};
-
-export const Textarea = (props: ITextareaProps) => {
+export const Textarea = (props: ITextarea) => {
   const {
     label,
     name,
@@ -107,16 +80,13 @@ export const Textarea = (props: ITextareaProps) => {
     onChange,
     onFocus,
     onBlur,
-    readOnly,
     lengthThreshold = 0,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
 
   const interceptFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!readOnly) {
-      setIsFocused(true);
-    }
+    setIsFocused(true);
     if (typeof onFocus === "function") {
       onFocus(e);
     }
@@ -149,7 +119,7 @@ export const Textarea = (props: ITextareaProps) => {
               <Text
                 type="body"
                 size="small"
-                appearance="dark"
+                appearance="danger"
                 textAlign="start"
               >
                 (Requerido)
@@ -186,12 +156,27 @@ export const Textarea = (props: ITextareaProps) => {
         onChange={onChange}
         onFocus={interceptFocus}
         onBlur={interceptBlur}
-        readOnly={readOnly}
         value={value}
       />
 
-      {status && (
-        <Message disabled={disabled} status={status} message={message} />
+      {status === "invalid" && !disabled && (
+        <StyledMessageContainer $disabled={disabled} $status={status}>
+          <Icon
+            appearance="danger"
+            disabled={disabled}
+            icon={<MdOutlineError />}
+          />
+          <Text
+            type="body"
+            size="small"
+            textAlign="start"
+            margin="8px 0px 0px 4px"
+            appearance="danger"
+            disabled={disabled}
+          >
+            {message && `${message}`}
+          </Text>
+        </StyledMessageContainer>
       )}
     </StyledContainer>
   );

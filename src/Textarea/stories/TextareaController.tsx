@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ITextareaProps, Textarea } from "..";
+import { ITextarea, Textarea } from "..";
 
-const TextareaController = (props: ITextareaProps) => {
+const TextareaController = (props: ITextarea) => {
   const { value = "", status = "pending", maxLength = 0 } = props;
   const [form, setForm] = useState({ value, status });
 
@@ -22,10 +22,7 @@ const TextareaController = (props: ITextareaProps) => {
       setForm({ ...form, status: "invalid" });
     } else setForm({ ...form, status: "valid" });
   };
-  const message =
-    form.status === "valid"
-      ? "The field has been successfully validated"
-      : "The number the characters is too long";
+  const message = "The number the characters is too long";
   return (
     <Textarea
       {...props}

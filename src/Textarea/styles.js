@@ -23,7 +23,7 @@ export const StyledTextarea = styled.textarea`
         inube.text.gray.content.color.disabled
       : theme?.text?.dark?.content?.color?.regular ||
         inube.text.dark.content.color.regular};
-  border: 2px solid
+  border: 1px solid
     ${({ $disabled, $status, $isFocused, theme }) => {
       if ($disabled) {
         return (
@@ -73,7 +73,7 @@ export const StyledMessageContainer = styled.div`
   align-items: center;
   margin-left: 16px;
   pointer-events: none;
-  color: ${({ $disabled, $status, theme }) => {
+  color: ${({ $disabled, theme }) => {
     if ($disabled) {
       return (
         theme?.text?.dark?.content?.color?.disabled ||
@@ -81,19 +81,10 @@ export const StyledMessageContainer = styled.div`
       );
     }
 
-    if ($status === "valid") {
-      return (
-        theme?.text?.success?.content?.color?.regular ||
-        inube.text.success.content.color.regular
-      );
-    }
-
-    if ($status === "invalid") {
-      return (
-        theme?.text?.danger?.content?.color?.regular ||
-        inube.text.danger.content.color.regular
-      );
-    }
+    return (
+      theme?.text?.danger?.content?.color?.regular ||
+      inube.text.danger.content.color.regular
+    );
   }};
 
   & svg {
