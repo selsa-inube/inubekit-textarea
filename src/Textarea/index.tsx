@@ -81,15 +81,39 @@ const Textarea = (props: ITextarea) => {
 
   const interceptFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFocused(true);
-    if (typeof onFocus === "function") {
-      onFocus(e);
+    try {
+      onFocus && onFocus(e);
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("An unknown error occurred");
+      }
     }
   };
 
   const interceptBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFocused(false);
-    if (typeof onBlur === "function") {
-      onBlur(e);
+    try {
+      onBlur && onBlur(e);
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("An unknown error occurred");
+      }
+    }
+  };
+
+  const interceptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      onChange && onChange(e);
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("An unknown error occurred");
+      }
     }
   };
 
@@ -137,7 +161,7 @@ const Textarea = (props: ITextarea) => {
         $status={status}
         $fullwidth={fullwidth}
         $focused={focused}
-        onChange={onChange}
+        onChange={interceptChange}
         onFocus={interceptFocus}
         onBlur={interceptBlur}
         value={value}
