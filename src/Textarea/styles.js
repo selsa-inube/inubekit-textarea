@@ -48,7 +48,8 @@ const StyledTextarea = styled.textarea`
         theme?.input?.border?.color?.regular || inube.input.border.color.regular
       );
     }};
-  ${({ $disabled }) => $disabled && "pointer-events: none; opacity: 0.5;"}
+  pointer-events: ${({ $disabled }) => $disabled && "none"};
+  opacity: ${({ $disabled }) => $disabled && "0.5"};
 
   ::placeholder {
     color: ${({ theme }) =>
