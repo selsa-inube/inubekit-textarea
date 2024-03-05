@@ -6,12 +6,17 @@ import { Label } from "@inubekit/label";
 import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 
-import { Appearence, Status } from "./props";
+import { Status } from "./props";
 import {
   StyledContainer,
   StyledTextarea,
   StyledMessageContainer,
 } from "./styles";
+
+interface ICounter {
+  maxLength: number;
+  currentLength: number;
+}
 
 interface ITextarea {
   label?: string;
@@ -29,14 +34,10 @@ interface ITextarea {
   fullwidth?: boolean;
   onFocus?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  lengthThreshold?: number;
 }
 
-const defineAppearance = (
-  maxLength: number,
-  valueLength: number,
-  lengthThreshold: number,
-) => {
+const getCounterAppearance = (maxLength: number, valueLength: number) => {
+  const lengthThreshold = Math.floor(maxLength * 0.1);
   if (maxLength - valueLength <= lengthThreshold && valueLength <= maxLength) {
     return "warning";
   } else if (valueLength > maxLength) {
@@ -45,22 +46,16 @@ const defineAppearance = (
   return "gray";
 };
 
-const Counter = (
-  props: Omit<ITextarea, "id"> & {
-    valueLength: number;
-    appearance: Appearence;
-  },
-) => {
-  const { maxLength, appearance, disabled, valueLength } = props;
+const Counter = ({ maxLength, currentLength }: ICounter) => {
+  const appearance = getCounterAppearance(maxLength, currentLength);
 
   return (
     <Text
       type="body"
       size="small"
-      disabled={disabled}
       appearance={appearance}
       textAlign="start"
-    >{`${valueLength}/${maxLength}`}</Text>
+    >{`${currentLength}/${maxLength}`}</Text>
   );
 };
 
@@ -72,7 +67,7 @@ const Textarea = (props: ITextarea) => {
     placeholder,
     disabled,
     value = "",
-    maxLength = 0,
+    maxLength = 100,
     required,
     status = "pending",
     message,
@@ -80,7 +75,6 @@ const Textarea = (props: ITextarea) => {
     onChange,
     onFocus,
     onBlur,
-    lengthThreshold = 0,
   } = props;
 
   const [focused, setFocused] = useState(false);
@@ -129,17 +123,7 @@ const Textarea = (props: ITextarea) => {
         )}
         {!disabled && (
           <Stack justifyContent="flex-end" alignItems="center" width="100%">
-            <Counter
-              appearance={defineAppearance(
-                maxLength,
-                value.length,
-                lengthThreshold,
-              )}
-              maxLength={maxLength}
-              lengthThreshold={lengthThreshold}
-              disabled={disabled}
-              valueLength={value!.length}
-            />
+            <Counter maxLength={maxLength} currentLength={value.length} />
           </Stack>
         )}
       </Stack>
@@ -159,22 +143,17 @@ const Textarea = (props: ITextarea) => {
         value={value}
       />
 
-      {status === "invalid" && !disabled && (
-        <StyledMessageContainer $disabled={disabled} $status={status}>
-          <Icon
-            appearance="danger"
-            disabled={disabled}
-            icon={<MdOutlineError />}
-          />
+      {status === "invalid" && !disabled && message && (
+        <StyledMessageContainer>
+          <Icon appearance="danger" icon={<MdOutlineError />} />
           <Text
             type="body"
             size="small"
             textAlign="start"
             margin="8px 0px 0px 4px"
             appearance="danger"
-            disabled={disabled}
           >
-            {message && `${message}`}
+            {message}
           </Text>
         </StyledMessageContainer>
       )}
