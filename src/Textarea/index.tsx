@@ -1,25 +1,30 @@
 import { useState } from "react";
-import { MdOutlineError, MdCheckCircle } from "react-icons/md";
+import { MdOutlineError } from "react-icons/md";
 
 import { Icon } from "@inubekit/icon";
 import { Label } from "@inubekit/label";
 import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 
-import { Appearence, Status } from "./props";
+import { Status } from "./props";
 import {
   StyledContainer,
   StyledTextarea,
   StyledMessageContainer,
 } from "./styles";
 
-export interface ITextareaProps {
+interface ICounter {
+  maxLength: number;
+  currentLength: number;
+}
+
+interface ITextarea {
   label?: string;
   name?: string;
   id: string;
   placeholder?: string;
   disabled?: boolean;
-  isFocused?: boolean;
+  focused?: boolean;
   status?: Status;
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -29,69 +34,32 @@ export interface ITextareaProps {
   fullwidth?: boolean;
   onFocus?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  readOnly?: boolean;
-  lengthThreshold?: number;
 }
 
-const defineAppearance = (
-  maxLength: number,
-  valueLength: number,
-  lengthThreshold: number,
-) => {
+const getCounterAppearance = (maxLength: number, valueLength: number) => {
+  const lengthThreshold = Math.floor(maxLength * 0.1);
   if (maxLength - valueLength <= lengthThreshold && valueLength <= maxLength) {
     return "warning";
   } else if (valueLength > maxLength) {
-    return "error";
+    return "danger";
   }
   return "gray";
 };
 
-const Counter = (
-  props: Omit<ITextareaProps, "id"> & {
-    valueLength: number;
-    appearance: Appearence;
-  },
-) => {
-  const { maxLength, appearance, disabled, valueLength } = props;
+const Counter = ({ maxLength, currentLength }: ICounter) => {
+  const appearance = getCounterAppearance(maxLength, currentLength);
 
   return (
     <Text
       type="body"
       size="small"
-      disabled={disabled}
       appearance={appearance}
       textAlign="start"
-    >{`${valueLength}/${maxLength}`}</Text>
+    >{`${currentLength}/${maxLength}`}</Text>
   );
 };
 
-const Message = (props: Omit<ITextareaProps, "id">) => {
-  const { disabled, status, message } = props;
-
-  return status !== "pending" ? (
-    <StyledMessageContainer $disabled={disabled} $status={status}>
-      <Icon
-        appearance={status === "invalid" ? "error" : "success"}
-        disabled={disabled}
-        icon={status === "invalid" ? <MdOutlineError /> : <MdCheckCircle />}
-      />
-      <Text
-        type="body"
-        size="small"
-        textAlign="start"
-        margin="8px 0px 0px 4px"
-        appearance={status === "invalid" ? "error" : "success"}
-        disabled={disabled}
-      >
-        {message && `${message}`}
-      </Text>
-    </StyledMessageContainer>
-  ) : (
-    <></>
-  );
-};
-
-export const Textarea = (props: ITextareaProps) => {
+const Textarea = (props: ITextarea) => {
   const {
     label,
     name,
@@ -99,7 +67,7 @@ export const Textarea = (props: ITextareaProps) => {
     placeholder,
     disabled,
     value = "",
-    maxLength = 0,
+    maxLength = 100,
     required,
     status = "pending",
     message,
@@ -107,25 +75,45 @@ export const Textarea = (props: ITextareaProps) => {
     onChange,
     onFocus,
     onBlur,
-    readOnly,
-    lengthThreshold = 0,
   } = props;
 
-  const [isFocused, setIsFocused] = useState(false);
+  const [focused, setFocused] = useState(false);
 
   const interceptFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!readOnly) {
-      setIsFocused(true);
-    }
-    if (typeof onFocus === "function") {
-      onFocus(e);
+    setFocused(true);
+    try {
+      onFocus && onFocus(e);
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("An unknown error occurred");
+      }
     }
   };
 
   const interceptBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsFocused(false);
-    if (typeof onBlur === "function") {
-      onBlur(e);
+    setFocused(false);
+    try {
+      onBlur && onBlur(e);
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("An unknown error occurred");
+      }
+    }
+  };
+
+  const interceptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      onChange && onChange(e);
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("An unknown error occurred");
+      }
     }
   };
 
@@ -138,7 +126,7 @@ export const Textarea = (props: ITextareaProps) => {
               <Label
                 htmlFor={id}
                 disabled={disabled}
-                focused={isFocused}
+                focused={focused}
                 invalid={status === "invalid" ? true : false}
               >
                 {label}
@@ -149,7 +137,7 @@ export const Textarea = (props: ITextareaProps) => {
               <Text
                 type="body"
                 size="small"
-                appearance="dark"
+                appearance="danger"
                 textAlign="start"
               >
                 (Requerido)
@@ -159,17 +147,7 @@ export const Textarea = (props: ITextareaProps) => {
         )}
         {!disabled && (
           <Stack justifyContent="flex-end" alignItems="center" width="100%">
-            <Counter
-              appearance={defineAppearance(
-                maxLength,
-                value.length,
-                lengthThreshold,
-              )}
-              maxLength={maxLength}
-              lengthThreshold={lengthThreshold}
-              disabled={disabled}
-              valueLength={value!.length}
-            />
+            <Counter maxLength={maxLength} currentLength={value.length} />
           </Stack>
         )}
       </Stack>
@@ -182,17 +160,30 @@ export const Textarea = (props: ITextareaProps) => {
         required={required}
         $status={status}
         $fullwidth={fullwidth}
-        $isFocused={isFocused}
-        onChange={onChange}
+        $focused={focused}
+        onChange={interceptChange}
         onFocus={interceptFocus}
         onBlur={interceptBlur}
-        readOnly={readOnly}
         value={value}
       />
 
-      {status && (
-        <Message disabled={disabled} status={status} message={message} />
+      {status === "invalid" && !disabled && message && (
+        <StyledMessageContainer>
+          <Icon appearance="danger" icon={<MdOutlineError />} />
+          <Text
+            type="body"
+            size="small"
+            textAlign="start"
+            margin="8px 0px 0px 4px"
+            appearance="danger"
+          >
+            {message}
+          </Text>
+        </StyledMessageContainer>
       )}
     </StyledContainer>
   );
 };
+
+export { Textarea };
+export type { ITextarea };

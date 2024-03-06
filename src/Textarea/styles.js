@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { inube } from "@inubekit/foundations";
 
-export const StyledContainer = styled.div`
+const StyledContainer = styled.div`
   cursor: ${({ $disabled }) => $disabled && "not-allowed"};
   width: ${({ $fullwidth }) => ($fullwidth ? "100%" : "fit-content")};
 `;
 
-export const StyledTextarea = styled.textarea`
+const StyledTextarea = styled.textarea`
   border-radius: 8px;
-  padding: ${() => `${inube.spacing.s100} ${inube.spacing.s150} ${inube.spacing.s100}
-    ${inube.spacing.s200}`};
-  font-family: ${inube.typography.body.large.font};
+  padding: 8px 12px 8px 16px;
+  font-family: ${({ theme }) =>
+    theme?.typography?.body?.large?.font || inube.typography.body.large.font};
   font-size: ${inube.typography.body.large.size};
   font-weight: ${inube.typography.body.large.weight};
   line-height: ${inube.typography.body.large.lineHeight};
@@ -19,40 +19,42 @@ export const StyledTextarea = styled.textarea`
   height: 120px;
   color: ${({ disabled, theme }) =>
     disabled
-      ? theme?.color?.text?.gray?.disabled || inube.color.text.gray.disabled
-      : theme?.color?.text?.dark?.regular || inube.color.text.dark.regular};
-  border: 2px solid
-    ${({ $disabled, $status, $isFocused, theme }) => {
+      ? theme?.input?.content?.color?.disabled ||
+        inube.input.content.color.disabled
+      : theme?.input?.content?.color?.regular ||
+        inube.input.content.color.regular};
+  border: 1px solid
+    ${({ $disabled, $status, $focused, theme }) => {
       if ($disabled) {
         return (
-          theme?.color?.stroke?.gray?.disabled ||
-          inube.color.stroke.gray.disabled
+          theme?.input?.border?.color?.disabled ||
+          inube.input.border.color.disabled
         );
       }
 
       if ($status === "invalid") {
         return (
-          theme?.color?.stroke?.error?.regular ||
-          inube.color.stroke.error.regular
+          theme?.input?.border?.color?.invalid ||
+          inube.input.border.color.invalid
         );
       }
 
-      if ($isFocused) {
+      if ($focused) {
         return (
-          theme?.color?.stroke?.primary?.hover ||
-          inube.color.stroke.primary.hover
+          theme?.input?.border?.color?.focus || inube.input.border.color.focus
         );
       }
       return (
-        theme?.color?.stroke?.divider?.regular ||
-        inube.color.stroke.divider.regular
+        theme?.input?.border?.color?.regular || inube.input.border.color.regular
       );
     }};
-  ${({ $disabled }) => $disabled && "pointer-events: none; opacity: 0.5;"}
+  pointer-events: ${({ $disabled }) => $disabled && "none"};
+  opacity: ${({ $disabled }) => $disabled && "0.5"};
 
   ::placeholder {
     color: ${({ theme }) =>
-      theme?.color?.text?.gray?.regular || inube.color.text.gray.regular};
+      theme?.input?.placeholder?.color?.regular ||
+      inube.input.placeholder.color.regular};
   }
 
   &:focus {
@@ -65,34 +67,20 @@ export const StyledTextarea = styled.textarea`
   }
 `;
 
-export const StyledMessageContainer = styled.div`
+const StyledMessageContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-left: ${inube.spacing.s200};
+  margin-left: 16px;
   pointer-events: none;
-  color: ${({ $disabled, $status, theme }) => {
-    if ($disabled) {
-      return (
-        theme?.color?.text?.gray?.disabled || inube.color.text.gray.disabled
-      );
-    }
-
-    if ($status === "valid") {
-      return (
-        theme?.color?.text?.success?.regular || inube.color.text.success.regular
-      );
-    }
-
-    if ($status === "invalid") {
-      return (
-        theme?.color?.text?.error?.regular || inube.color.text.error.regular
-      );
-    }
-  }};
+  color: ${({ theme }) =>
+    theme?.input?.message?.color?.invalid ||
+    inube.input.message.color.invalid}};
 
   & svg {
     width: 14px;
     height: 14px;
-    margin-top: ${inube.spacing.s100};
+    margin-top: 8px;
   }
 `;
+
+export { StyledContainer, StyledTextarea, StyledMessageContainer };

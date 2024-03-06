@@ -1,10 +1,9 @@
 const status = ["valid", "invalid", "pending"] as const;
 
-export type Appearence = "error" | "warning" | "gray";
+type Appearence = "danger" | "warning" | "gray";
+type Status = (typeof status)[number];
 
-export type Status = (typeof status)[number];
-
-export const parameters = {
+const parameters = {
   docs: {
     description: {
       component:
@@ -13,7 +12,7 @@ export const parameters = {
   },
 };
 
-export const props = {
+const props = {
   label: {
     description: "prompts the user what value to enter",
   },
@@ -69,15 +68,12 @@ export const props = {
       defaultValue: { summary: false },
     },
   },
-  readOnly: {
-    descriptions: "option to make the field read only",
-    table: {
-      defaultValue: { summary: false },
-    },
-  },
 
   lengthThreshold: {
     description:
       "defines the minimum number of characters for displaying counter alerts",
   },
 };
+
+export { parameters, props };
+export type { Appearence, Status };
