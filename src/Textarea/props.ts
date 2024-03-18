@@ -1,4 +1,4 @@
-const status = ["valid", "invalid", "pending"] as const;
+const status = ["invalid", "pending"] as const;
 
 type Appearence = "danger" | "warning" | "gray";
 type Status = (typeof status)[number];
