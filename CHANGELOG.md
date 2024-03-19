@@ -1,3 +1,21 @@
+# v2.0.0 (Tue Mar 19 2024)
+
+#### 💥 Breaking Change
+
+- Refactor component `<Textarea/>` to use new tokens, and component dependencies (text, label, icon). [#2](https://github.com/selsa-inube/inubekit-textarea/pull/2) ([@cmarin001](https://github.com/cmarin001))
+
+#### 🐛 Bug Fix
+
+- Remove "valid" value from status prop [#3](https://github.com/selsa-inube/inubekit-textarea/pull/3) ([@cmarin001](https://github.com/cmarin001))
+- Adjust publish `<Textarea />` inubekit repo [#1](https://github.com/selsa-inube/inubekit-textarea/pull/1) ([@Andresbl123](https://github.com/Andresbl123))
+
+#### Authors: 2
+
+- Andres ([@Andresbl123](https://github.com/Andresbl123))
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v0.0.2 (Tue Feb 06 2024)
 
 #### ⚠️ Pushed to `main`
