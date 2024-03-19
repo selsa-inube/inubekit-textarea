@@ -20,7 +20,7 @@ const TextareaController = (props: ITextarea) => {
   const onBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > maxLength) {
       setForm({ ...form, status: "invalid" });
-    } else setForm({ ...form, status: "valid" });
+    } else setForm({ ...form, status: "pending" });
   };
   const message = "The number the characters is too long";
   return (
