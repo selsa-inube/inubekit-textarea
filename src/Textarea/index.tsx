@@ -6,7 +6,7 @@ import { Label } from "@inubekit/label";
 import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 
-import { Status } from "./props";
+import { ITextareaStatus } from "./props";
 import {
   StyledContainer,
   StyledTextarea,
@@ -25,7 +25,7 @@ interface ITextarea {
   placeholder?: string;
   disabled?: boolean;
   focused?: boolean;
-  status?: Status;
+  status?: ITextareaStatus;
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   maxLength?: number;
