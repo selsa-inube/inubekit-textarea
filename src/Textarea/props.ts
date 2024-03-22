@@ -1,7 +1,7 @@
 const status = ["invalid", "pending"] as const;
 
-type Appearence = "danger" | "warning" | "gray";
-type Status = (typeof status)[number];
+type ITextareaAppearence = "danger" | "warning" | "gray";
+type ITextareaStatus = (typeof status)[number];
 
 const parameters = {
   docs: {
@@ -76,4 +76,4 @@ const props = {
 };
 
 export { parameters, props };
-export type { Appearence, Status };
+export type { ITextareaAppearence, ITextareaStatus };
