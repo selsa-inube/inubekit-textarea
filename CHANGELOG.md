@@ -1,3 +1,28 @@
+# v2.1.0 (Thu Apr 04 2024)
+
+#### 🚀 Enhancement
+
+- Adjust and export interfaces [#6](https://github.com/selsa-inube/inubekit-textarea/pull/6) ([@cmarin001](https://github.com/cmarin001))
+
+#### 🐛 Bug Fix
+
+- Add auto publish [#8](https://github.com/selsa-inube/inubekit-textarea/pull/8) ([@cmarin001](https://github.com/cmarin001))
+
+#### 📝 Documentation
+
+- Publish new version 2.1.0 [#7](https://github.com/selsa-inube/inubekit-textarea/pull/7) ([@cmarin001](https://github.com/cmarin001))
+- Publish new version 2.0.0 [#4](https://github.com/selsa-inube/inubekit-textarea/pull/4) ([@cmarin001](https://github.com/cmarin001))
+
+#### 🔩 Dependency Updates
+
+- Update inubekit/textarea to storybook v8 [#5](https://github.com/selsa-inube/inubekit-textarea/pull/5) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.1.0 (Fri Mar 22 2024)
 
 #### 🚀 Enhancement
