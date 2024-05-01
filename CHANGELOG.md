@@ -1,3 +1,15 @@
+# v2.3.0 (Wed May 01 2024)
+
+#### 🚀 Enhancement
+
+- Update workflow in order to avoid merges with failed builds [#9](https://github.com/selsa-inube/inubekit-textarea/pull/9) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.1.0 (Thu Apr 04 2024)
 
 #### 🚀 Enhancement
