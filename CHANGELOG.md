@@ -1,3 +1,19 @@
+# v2.4.0 (Fri May 17 2024)
+
+#### 🚀 Enhancement
+
+- Release new version [#11](https://github.com/selsa-inube/inubekit-textarea/pull/11) ([@cmarin001](https://github.com/cmarin001))
+
+#### 🔩 Dependency Updates
+
+- Update dependencies in order to avoid context error [#10](https://github.com/selsa-inube/inubekit-textarea/pull/10) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.3.0 (Wed May 01 2024)
 
 #### 🚀 Enhancement
