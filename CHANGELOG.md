@@ -1,3 +1,15 @@
+# v2.5.0 (Sat May 25 2024)
+
+#### 🚀 Enhancement
+
+- Review and Adjust TextArea Component According to Documentation [#12](https://github.com/selsa-inube/inubekit-textarea/pull/12) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.4.0 (Fri May 17 2024)
 
 #### 🚀 Enhancement
