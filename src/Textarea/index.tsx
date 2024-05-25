@@ -11,6 +11,7 @@ import {
   StyledContainer,
   StyledTextarea,
   StyledMessageContainer,
+  StyledLabelContainer,
 } from "./styles";
 
 interface ICounter {
@@ -119,18 +120,20 @@ const Textarea = (props: ITextarea) => {
 
   return (
     <StyledContainer $fullwidth={fullwidth} $disabled={disabled}>
-      <Stack width="100%" margin="s0 s0 s050 s0">
+      <Stack width="100%" margin="0 0 4px 0">
         {(label || required) && (
-          <Stack gap="4px" alignItems="center" padding="s0 s0 s0 s200">
+          <Stack alignItems="center" padding="0 0 0 16px" height="15px">
             {label && (
-              <Label
-                htmlFor={id}
-                disabled={disabled}
-                focused={focused}
-                invalid={status === "invalid" ? true : false}
-              >
-                {label}
-              </Label>
+              <StyledLabelContainer>
+                <Label
+                  htmlFor={id}
+                  disabled={disabled}
+                  focused={focused}
+                  invalid={status === "invalid" ? true : false}
+                >
+                  {label}
+                </Label>
+              </StyledLabelContainer>
             )}
 
             {required && !disabled && (

@@ -83,4 +83,12 @@ const StyledMessageContainer = styled.div`
   }
 `;
 
-export { StyledContainer, StyledTextarea, StyledMessageContainer };
+const StyledLabelContainer = styled.p`
+  text-wrap: nowrap;
+`;
+export {
+  StyledContainer,
+  StyledLabelContainer,
+  StyledTextarea,
+  StyledMessageContainer,
+};
