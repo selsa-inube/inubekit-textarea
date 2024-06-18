@@ -1,3 +1,15 @@
+# v2.6.0 (Tue Jun 18 2024)
+
+#### 🚀 Enhancement
+
+- Update Foundations Dependencies [#13](https://github.com/selsa-inube/inubekit-textarea/pull/13) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.5.0 (Sat May 25 2024)
 
 #### 🚀 Enhancement
