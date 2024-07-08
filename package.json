@@ -40,11 +40,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@inubekit/foundations": "^5.0.0",
+    "@inubekit/foundations": "^5.1.0",
     "@inubekit/icon": "^1.8.0",
-    "@inubekit/label": "^2.4.0",
+    "@inubekit/label": "^2.6.0",
     "@inubekit/stack": "^2.3.0",
-    "@inubekit/text": "^2.4.0"
+    "@inubekit/text": "^2.6.0"
   },
   "peerDependencies": {
     "react": "^18.2.0",
