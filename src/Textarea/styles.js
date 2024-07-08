@@ -12,7 +12,7 @@ const StyledTextarea = styled.textarea`
   font-family: ${({ theme }) =>
     theme?.typography?.body?.large?.font || inube.typography.body.large.font};
   font-size: ${inube.typography.body.large.size};
-  font-weight: ${inube.typography.body.large.weight};
+  font-weight: 400;
   line-height: ${inube.typography.body.large.lineHeight};
   letter-spacing: ${inube.typography.body.large.tracking};
   width: ${({ $fullwidth }) => ($fullwidth ? "calc(100% - 32px)" : "452px")};
