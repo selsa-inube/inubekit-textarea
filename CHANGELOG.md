@@ -1,3 +1,15 @@
+# v2.11.1 (Wed Jul 31 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: update styles in order to avoid erratic behavior ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.11.0 (Wed Jul 10 2024)
 
 #### 🚀 Enhancement
