@@ -76,7 +76,7 @@ const StyledMessageContainer = styled.div`
     theme?.input?.message?.color?.invalid ||
     inube.input.message.color.invalid}};
 
-  & svg {
+  & > svg {
     width: 14px;
     height: 14px;
     margin-top: 8px;
