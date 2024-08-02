@@ -1,0 +1,86 @@
+name: Update Foundations
+
+on:
+  repository_dispatch:
+    types: [update-foundations]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Checkout Branch
+        run: |
+          git config --global user.email "cmarin6051@gmail.com"
+          git config --global user.name "cmarin001"
+          git checkout -b cmarin/update-foundations-dependency
+
+      - name: Update Foundations Dependency
+        run: npm install @inubekit/foundations@latest --save
+
+      - name: Verify Update
+        run: cat package.json
+
+      - name: Commit and Push Changes
+        run: |
+          git add package.json
+          git commit -m "chore(dependencies): update foundations to latest version"
+          git push origin cmarin/update-foundations-dependency
+    
+      - name: Create Pull Request
+        id: create_pr
+        run: |
+          PR_URL=$(curl -s -X POST \
+            -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/pulls \
+            -d '{
+              "title": "Update foundations dependency to latest version",
+              "body": "This PR updates the foundations dependency to the latest version.",
+              "head": "cmarin/update-foundations-dependency",
+              "base": "main"
+            }' | jq -r '.html_url')
+          echo "PR_URL=${PR_URL}" >> $GITHUB_ENV
+
+      - name: Add Labels to Pull Request
+        run: |
+          PR_NUMBER=$(echo $PR_URL | sed 's/[^0-9]*//g')
+          curl -s -X POST \
+            -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/labels \
+            -d '["dependencies", "minor"]'
+
+      - name: Merge Pull Request
+        id: merge_pr
+        run: |
+          PR_NUMBER=$(echo $PR_URL | sed 's/[^0-9]*//g')
+          MERGE_RESPONSE=$(curl -s -X PUT \
+            -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/merge \
+            -d '{
+              "commit_title": "Auto-merge PR",
+              "merge_method": "squash"
+            }')
+          MERGE_STATUS=$(echo ${MERGE_RESPONSE} | jq -r '.merged')
+          echo "MERGE_STATUS=${MERGE_STATUS}" >> $GITHUB_ENV
+
+      - name: Delete Branch
+        if: env.MERGE_STATUS == 'true'
+        run: |
+          BRANCH="cmarin/update-foundations-dependency"
+          curl -s -X DELETE \
+            -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/git/refs/heads/${BRANCH}
