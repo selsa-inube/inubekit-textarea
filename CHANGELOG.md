@@ -1,3 +1,16 @@
+# v2.11.2 (Fri Aug 02 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Create update-foundations.yml ([@cmarin001](https://github.com/cmarin001))
+- Delete .github/workflows/.github/workflows directory ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.11.1 (Wed Jul 31 2024)
 
 #### ⚠️ Pushed to `main`
