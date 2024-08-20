@@ -44,7 +44,7 @@
     "@inubekit/icon": "^2.7.2",
     "@inubekit/label": "^2.6.0",
     "@inubekit/stack": "^3.2.1",
-    "@inubekit/text": "^2.9.1"
+    "@inubekit/text": "^2.10.0"
   },
   "peerDependencies": {
     "react": "^18.2.0",
