@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { MdOutlineError } from "react-icons/md";
 
 import { Icon } from "@inubekit/icon";
 import { Label } from "@inubekit/label";
 import { Stack } from "@inubekit/stack";
-import { Text } from "@inubekit/text";
+import { ITextAppearance, Text } from "@inubekit/text";
 
 import { ITextareaStatus } from "./props";
 import {
@@ -13,6 +13,8 @@ import {
   StyledMessageContainer,
   StyledLabelContainer,
 } from "./styles";
+import { inube } from "@inubekit/foundations";
+import { ThemeContext } from "styled-components";
 
 interface ICounter {
   maxLength: number;
@@ -85,11 +87,7 @@ const Textarea = (props: ITextarea) => {
     try {
       onFocus && onFocus(e);
     } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(error.message);
-      } else {
-        throw new Error("An unknown error occurred");
-      }
+      console.error(`Error executing focus callback. ${error}`);
     }
   };
 
@@ -98,11 +96,7 @@ const Textarea = (props: ITextarea) => {
     try {
       onBlur && onBlur(e);
     } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(error.message);
-      } else {
-        throw new Error("An unknown error occurred");
-      }
+      console.error(`Error executing blur callback. ${error}`);
     }
   };
 
@@ -110,13 +104,17 @@ const Textarea = (props: ITextarea) => {
     try {
       onChange && onChange(e);
     } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(error.message);
-      } else {
-        throw new Error("An unknown error occurred");
-      }
+      console.error(`Error when changing value using callback. ${error}`);
     }
   };
+
+  const theme: typeof inube = useContext(ThemeContext);
+  const requiredAppearance =
+    (theme?.input?.required?.appearance as ITextAppearance) ||
+    inube.input.required.appearance;
+  const messageAppearance =
+    (theme?.input?.message?.appearance as ITextAppearance) ||
+    inube.input.message.appearance;
 
   return (
     <StyledContainer $fullwidth={fullwidth} $disabled={disabled}>
@@ -140,7 +138,7 @@ const Textarea = (props: ITextarea) => {
               <Text
                 type="body"
                 size="small"
-                appearance="danger"
+                appearance={requiredAppearance}
                 textAlign="start"
               >
                 (Requerido)
@@ -172,13 +170,13 @@ const Textarea = (props: ITextarea) => {
 
       {status === "invalid" && !disabled && message && (
         <StyledMessageContainer>
-          <Icon appearance="danger" icon={<MdOutlineError />} />
+          <Icon appearance={messageAppearance} icon={<MdOutlineError />} />
           <Text
             type="body"
             size="small"
             textAlign="start"
             margin="8px 0px 0px 4px"
-            appearance="danger"
+            appearance={messageAppearance}
           >
             {message}
           </Text>
