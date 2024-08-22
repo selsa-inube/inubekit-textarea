@@ -1,3 +1,15 @@
+# v2.23.0 (Thu Aug 22 2024)
+
+#### 🚀 Enhancement
+
+- Refactor Inputs with "requerido" Text Using ....required.color.regular Token [#33](https://github.com/selsa-inube/inubekit-textarea/pull/33) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.22.1 (Wed Aug 21 2024)
 
 #### ⚠️ Pushed to `main`
