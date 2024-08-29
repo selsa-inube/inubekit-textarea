@@ -1,3 +1,16 @@
+# v2.25.0 (Thu Aug 29 2024)
+
+#### 🚀 Enhancement
+
+- Auto-merge PR [#36](https://github.com/selsa-inube/inubekit-textarea/pull/36) ([@cmarin001](https://github.com/cmarin001))
+- Auto-merge PR [#35](https://github.com/selsa-inube/inubekit-textarea/pull/35) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.24.0 (Fri Aug 23 2024)
 
 #### 🚀 Enhancement
