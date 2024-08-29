@@ -40,7 +40,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@inubekit/foundations": "^5.8.1",
+    "@inubekit/foundations": "^5.9.0",
     "@inubekit/icon": "^2.10.0",
     "@inubekit/label": "^2.6.0",
     "@inubekit/stack": "^3.4.0",
