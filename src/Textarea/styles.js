@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { inube } from "@inubekit/foundations";
+import { InputTokens } from "@inubekit/input";
 
 const StyledContainer = styled.div`
   cursor: ${({ $disabled }) => $disabled && "not-allowed"};
@@ -20,32 +21,32 @@ const StyledTextarea = styled.textarea`
   color: ${({ disabled, theme }) =>
     disabled
       ? theme?.input?.content?.color?.disabled ||
-        inube.input.content.color.disabled
+        InputTokens.content.color.disabled
       : theme?.input?.content?.color?.regular ||
-        inube.input.content.color.regular};
+        InputTokens.content.color.regular};
   border: 1px solid
     ${({ $disabled, $status, $focused, theme }) => {
       if ($disabled) {
         return (
           theme?.input?.border?.color?.disabled ||
-          inube.input.border.color.disabled
+          InputTokens.border.color.disabled
         );
       }
 
       if ($status === "invalid") {
         return (
           theme?.input?.border?.color?.invalid ||
-          inube.input.border.color.invalid
+          InputTokens.border.color.invalid
         );
       }
 
       if ($focused) {
         return (
-          theme?.input?.border?.color?.focus || inube.input.border.color.focus
+          theme?.input?.border?.color?.focus || InputTokens.border.color.focus
         );
       }
       return (
-        theme?.input?.border?.color?.regular || inube.input.border.color.regular
+        theme?.input?.border?.color?.regular || InputTokens.border.color.regular
       );
     }};
   pointer-events: ${({ $disabled }) => $disabled && "none"};
@@ -54,7 +55,7 @@ const StyledTextarea = styled.textarea`
   ::placeholder {
     color: ${({ theme }) =>
       theme?.input?.placeholder?.color?.regular ||
-      inube.input.placeholder.color.regular};
+      InputTokens.placeholder.color.regular};
   }
 
   &:focus {

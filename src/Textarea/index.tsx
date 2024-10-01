@@ -13,8 +13,9 @@ import {
   StyledMessageContainer,
   StyledLabelContainer,
 } from "./styles";
-import { inube } from "@inubekit/foundations";
+
 import { ThemeContext } from "styled-components";
+import { InputTokens } from "@inubekit/input";
 
 interface ICounter {
   maxLength: number;
@@ -108,13 +109,13 @@ const Textarea = (props: ITextarea) => {
     }
   };
 
-  const theme: typeof inube = useContext(ThemeContext);
+  const theme = useContext(ThemeContext) as { input: typeof InputTokens };
   const requiredAppearance =
     (theme?.input?.required?.appearance as ITextAppearance) ||
-    inube.input.required.appearance;
+    InputTokens.required.appearance;
   const messageAppearance =
     (theme?.input?.message?.appearance as ITextAppearance) ||
-    inube.input.message.appearance;
+    InputTokens.message.appearance;
 
   return (
     <StyledContainer $fullwidth={fullwidth} $disabled={disabled}>
