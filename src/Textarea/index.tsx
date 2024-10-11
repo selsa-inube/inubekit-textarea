@@ -20,6 +20,7 @@ import { InputTokens } from "@inubekit/input";
 interface ICounter {
   maxLength: number;
   currentLength: number;
+  minLength?: number;
 }
 
 interface ITextarea {
@@ -33,6 +34,7 @@ interface ITextarea {
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   maxLength?: number;
+  minLength?: number;
   required?: boolean;
   message?: string;
   fullwidth?: boolean;
@@ -40,7 +42,15 @@ interface ITextarea {
   onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const getCounterAppearance = (maxLength: number, valueLength: number) => {
+const getCounterAppearance = (
+  maxLength: number,
+  valueLength: number,
+  minLength?: number,
+) => {
+  if (minLength && valueLength < minLength) {
+    return "danger";
+  }
+
   const lengthThreshold = Math.floor(maxLength * 0.1);
   if (maxLength - valueLength <= lengthThreshold && valueLength <= maxLength) {
     return "warning";
@@ -50,8 +60,8 @@ const getCounterAppearance = (maxLength: number, valueLength: number) => {
   return "gray";
 };
 
-const Counter = ({ maxLength, currentLength }: ICounter) => {
-  const appearance = getCounterAppearance(maxLength, currentLength);
+const Counter = ({ maxLength, currentLength, minLength }: ICounter) => {
+  const appearance = getCounterAppearance(maxLength, currentLength, minLength);
 
   return (
     <Text
@@ -72,6 +82,7 @@ const Textarea = (props: ITextarea) => {
     disabled,
     value = "",
     maxLength = 100,
+    minLength = 0,
     required,
     status = "pending",
     message,
@@ -149,7 +160,11 @@ const Textarea = (props: ITextarea) => {
         )}
         {!disabled && (
           <Stack justifyContent="flex-end" alignItems="center" width="100%">
-            <Counter maxLength={maxLength} currentLength={value.length} />
+            <Counter
+              maxLength={maxLength}
+              minLength={minLength}
+              currentLength={value.length}
+            />
           </Stack>
         )}
       </Stack>

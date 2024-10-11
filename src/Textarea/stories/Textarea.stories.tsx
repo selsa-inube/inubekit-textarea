@@ -21,6 +21,7 @@ Default.args = {
   lengthThreshold: 20,
   required: true,
   maxLength: 250,
+  minLength: 50,
   value:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil veniam, reiciendis ipsum itaque unde odio voluptatum ab cumque deleniti dolore magnam quas hic rem, mollitia adipisci. Officiis accusamus aut consectetur",
 };
