@@ -1,3 +1,15 @@
+# v2.45.0 (Fri Oct 11 2024)
+
+#### 🚀 Enhancement
+
+- Extend Textarea component to handle minLength validation [#60](https://github.com/selsa-inube/inubekit-textarea/pull/60) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.44.0 (Thu Oct 10 2024)
 
 #### 🚀 Enhancement
